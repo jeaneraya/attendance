@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.form-ctrl {
+    border: 1px solid #d3d3d3 !important;
+    padding: 5px 10px !important;
+    border-radius: 10px !important;
+}
+
+.form-label {
+    width: -webkit-fill-available;
+}
+
+select.dt-input {
+    background-position: right 0rem center;
+    background-size: 1em 1em;
+}
+
+input.form-ctrl:disabled {
+    background-color: #dcdcdc;
+}
+
