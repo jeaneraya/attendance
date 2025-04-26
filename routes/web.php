@@ -17,6 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/attendance/check/{studentId}', [AttendanceController::class, 'attendance']);
     Route::get('/student/{stud_id}', [StudentController::class, 'getStudent']);
     Route::get('/students/archive/{stud_id}', [StudentController::class, 'archive']);
+    Route::post('/select-year', [StudentController::class, 'selectYear']);
 });
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

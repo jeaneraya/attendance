@@ -8,9 +8,16 @@
         <button class="btn btn-primary register-student">Register Student</button>
         <button class="btn btn-primary mx-3">View Report</button>
     </div> -->
-    <div>
+    <div class="my-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg pt-4">
+            <div class="mb-3 d-flex">
+                <form action="/select-year" method="POST" class="d-flex justify-content-around w-50">
+                    @csrf
+                    <input type="text" name="date_range" id="dateRangePicker" class="form-control mx-3" placeholder="Select date range">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+            </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <table class="table table-striped" id="attendance-table">
                         <thead>
@@ -29,7 +36,7 @@
                                 <td>{{$attendance->first_name}} {{$attendance->middle_name}} {{$attendance->last_name}}</td>
                                 <td>{{$attendance->course}}</td>
                                 <td>{{$attendance->year_level}}</td>
-                                <td>{{$attendance->attendance}} days</td>
+                                <td>{{$attendance->clock_in}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -37,7 +44,18 @@
 
                     <script>
                         new DataTable('#attendance-table');
+                        flatpickr("#dateRangePicker", {
+                            mode: "range",
+                            dateFormat: "Y-m-d",
+                        });
                     </script>
+
+                    @if (Request::is('attendance/check/*'))
+                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-3">
+                            <button class="btn btn-primary">➕ Add New Attendance</button>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>

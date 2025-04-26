@@ -14,8 +14,6 @@ class AttendanceController extends Controller
     public function index() {
 
         $attendances = Attendance::join('students', 'students.id', '=', 'attendances.stud_num')
-        ->select('students.*', DB::raw('COUNT(attendances.stud_num) as attendance'))
-        ->groupBy('students.id')
         ->get();
 
         return view('attendance')->with(['attendances' => $attendances]);
@@ -35,6 +33,7 @@ class AttendanceController extends Controller
         ->get();
 
         Attendance::create(['stud_num' => $student->id]);
-        return view('attendance')->with(['attendances' => $attendances]);
+
+        return view('attendance-alert', ['student' => $student]);
     }
 }

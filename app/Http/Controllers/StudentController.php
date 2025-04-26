@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Attendance;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class StudentController extends Controller
@@ -45,5 +46,22 @@ class StudentController extends Controller
     public function archive($stud_id) {
         Student::where('id',$stud_id)->update(['status' => 0]);
         return response()->json(['success' => true, 'message' => 'Student archived successfully']);
+    }
+
+    public function selectYear(Request $request) {
+        $range = $request->input('date_range');
+
+        if ($range && str_contains($range, ' to ')) {
+            [$startDate, $endDate] = explode(' to ', $range);
+    
+            $attendances = Attendance::join('students', 'students.id', '=', 'attendances.stud_num')
+                                ->whereDate('clock_in', '>=', $startDate)
+                                ->whereDate('clock_in', '<=', $endDate)
+                                ->get();
+    
+            return view('attendance', compact('attendances'));
+        }
+    
+        return back()->with('error', 'Please select a valid date range.');
     }
 }
