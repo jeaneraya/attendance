@@ -95,7 +95,7 @@
                             <input class="form-ctrl" type="text" name="student_id" id="student_id">
                         </div>
                         <div class="col-4">
-                            <label for="" class="form-label">Course</label>
+                            <label for="" class="form-label">Section</label>
                             <input class="form-ctrl" type="text" name="course" id="course">
                         </div>
                         <div class="col-4">

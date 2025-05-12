@@ -17,7 +17,7 @@
                             <th>#</th>
                             <th>Student ID</th>
                             <th>Name</th>
-                            <th>Course</th>
+                            <th>Section</th>
                             <th>Yr Level</th>
                             <th>QR Code</th>
                             <th>Action</th>
